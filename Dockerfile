@@ -14,4 +14,4 @@ ENV       REDIS_HOST redis
 ENV       REDIS_PORT 6379
 ENV       REDIS_DATABASE 0
 
-CMD       flower --auto_refresh=True --port=5555 --broker=redis://$REDIS_HOST:$REDIS_PORT/$REDIS_DATABASE
+CMD       flower --auto_refresh=True --persistent=True --port=5555 --broker=redis://$REDIS_HOST:$REDIS_PORT/$REDIS_DATABASE
