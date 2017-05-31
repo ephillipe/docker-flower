@@ -4,7 +4,7 @@ FROM      python:2.7
 # E.G. VIA LINKING OR MAESTRO-NG: THEY HAVE A SPECIAL MEANING IN FLOWER.
 
 RUN       pip install redis==2.10.5
-RUN       pip install flower==1.0.0
+RUN       pip install https://github.com/mher/flower/zipball/master
 
 # Default port
 EXPOSE    5555
