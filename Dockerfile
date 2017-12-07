@@ -6,6 +6,11 @@ FROM      python:2.7
 RUN       pip install redis==2.10.5
 RUN       pip install https://github.com/mher/flower/zipball/master
 
+ENV TZ=America/Sao_Paulo
+RUN rm -vf /etc/localtime \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
+    && echo $TZ > /etc/timezone
+
 # Default port
 EXPOSE    5555
 
