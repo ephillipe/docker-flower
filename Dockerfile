@@ -10,6 +10,8 @@ ENV PERSISTENT=True
 ENV AUTOREFRESH=True
 ENV INSPECTWORKERS=True
 ENV NATURALTIME=True
+# https://github.com/mher/flower/pull/649/commits/cd6fc8e054694b562f18930e723665de4bafc35f#diff-fd40cf2be7711772de9d8316da038cce
+ENV HIDEOFFLINEWORKERS=True
 
 ENV TZ=America/Sao_Paulo
 RUN rm -vf /etc/localtime \
@@ -24,4 +26,4 @@ ENV       REDIS_HOST redis
 ENV       REDIS_PORT 6379
 ENV       REDIS_DATABASE 0
 
-CMD       flower --auto-refresh=$AUTOREFRESH --persistent=$PERSISTENT --inspect=$INSPECTWORKERS --natural-time=$NATURALTIME --port=5555 --broker=redis://$REDIS_HOST:$REDIS_PORT/$REDIS_DATABASE
+CMD       flower --hide-offline-workers=$HIDEOFFLINEWORKERS --auto-refresh=$AUTOREFRESH --persistent=$PERSISTENT --inspect=$INSPECTWORKERS --natural-time=$NATURALTIME --port=5555 --broker=redis://$REDIS_HOST:$REDIS_PORT/$REDIS_DATABASE
