@@ -22,9 +22,4 @@ RUN rm -vf /etc/localtime \
 # Default port
 EXPOSE    5555
 
-# Variables with default that can be overruled by environment vars during docker run.
-ENV       REDIS_HOST redis
-ENV       REDIS_PORT 6379
-ENV       REDIS_DATABASE 0
-
 CMD       flower --hide-offline-workers=$HIDEOFFLINEWORKERS --auto-refresh=$AUTOREFRESH --persistent=$PERSISTENT --inspect=$INSPECTWORKERS --natural-time=$NATURALTIME --port=5555 --broker=$BROKER_URL
