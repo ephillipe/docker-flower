@@ -16,7 +16,6 @@ ENV FLOWER_INSPECT=True
 ENV FLOWER_NATURAL_TIME=True
 ENV FLOWER_PORT=5555
 # https://github.com/mher/flower/pull/649/commits/cd6fc8e054694b562f18930e723665de4bafc35f#diff-fd40cf2be7711772de9d8316da038cce
-ENV FLOWER_HIDE_OFFLINE_WORKERS=True
 ENV BROKER_URL=amqp://guest:guest@rabbitmq:5672//
 
 ENV TZ=America/Sao_Paulo
@@ -27,4 +26,4 @@ RUN rm -vf /etc/localtime \
 # Default port
 EXPOSE    5555
 
-CMD flower --hide-offline-workers=$FLOWER_HIDE_OFFLINE_WORKERS --inspect=$FLOWER_INSPECT_WORKERS --broker=$BROKER_URL
+CMD flower --broker=$BROKER_URL
