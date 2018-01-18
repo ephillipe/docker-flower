@@ -6,12 +6,17 @@ FROM      python:2.7
 RUN       pip install redis==2.10.5
 RUN       pip install https://github.com/mher/flower/zipball/master
 
-ENV PERSISTENT=True
-ENV AUTOREFRESH=True
-ENV INSPECTWORKERS=True
-ENV NATURALTIME=True
+ENV FLOWER_PERSISTENT=True
+ENV FLOWER_DEBUG=False
+ENV FLOWER_MAX_WORKERS=10
+ENV FLOWER_AUTO_REFRESH=True
+ENV FLOWER_INSPECT_TIMEOUT=1000
+ENV FLOWER_INSPECT_WORKERS=True
+ENV FLOWER_INSPECT=True
+ENV FLOWER_NATURAL_TIME=True
+ENV FLOWER_PORT=5555
 # https://github.com/mher/flower/pull/649/commits/cd6fc8e054694b562f18930e723665de4bafc35f#diff-fd40cf2be7711772de9d8316da038cce
-ENV HIDEOFFLINEWORKERS=True
+ENV FLOWER_HIDE_OFFLINE_WORKERS=True
 ENV BROKER_URL=amqp://guest:guest@rabbitmq:5672//
 
 ENV TZ=America/Sao_Paulo
@@ -22,4 +27,4 @@ RUN rm -vf /etc/localtime \
 # Default port
 EXPOSE    5555
 
-CMD       flower --hide-offline-workers=$HIDEOFFLINEWORKERS --auto-refresh=$AUTOREFRESH --persistent=$PERSISTENT --inspect=$INSPECTWORKERS --natural-time=$NATURALTIME --port=5555 --broker=$BROKER_URL
+CMD flower --hide-offline-workers=$FLOWER_HIDE_OFFLINE_WORKERS --inspect=$FLOWER_INSPECT_WORKERS --broker=$BROKER_URL
