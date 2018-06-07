@@ -6,7 +6,7 @@ FROM      python:2.7
 ENV FLOWER_VERSION=0.9.2
 
 RUN       pip install redis==2.10.5
-RUN       pip install flower=$FLOWER_VERSION
+RUN       pip install flower==$FLOWER_VERSION
 
 ENV FLOWER_PERSISTENT=True
 ENV FLOWER_DEBUG=False
