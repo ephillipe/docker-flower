@@ -3,8 +3,20 @@ FROM      python:2.7
 # WARNING: BE SURE NOT TO USE THE WORD 'FLOWER' IN THE ENV VARS
 # E.G. VIA LINKING OR MAESTRO-NG: THEY HAVE A SPECIAL MEANING IN FLOWER.
 
+ENV FLOWER_VERSION=0.9.2
+
 RUN       pip install redis==2.10.5
-RUN       pip install https://github.com/mher/flower/zipball/master
+RUN       pip install flower==$FLOWER_VERSION
+
+ENV FLOWER_PERSISTENT=True
+ENV FLOWER_DEBUG=False
+ENV FLOWER_MAX_WORKERS=10
+ENV FLOWER_AUTO_REFRESH=True
+ENV FLOWER_INSPECT_TIMEOUT=1000
+ENV FLOWER_INSPECT=True
+ENV FLOWER_NATURAL_TIME=True
+ENV FLOWER_PORT=5555
+ENV BROKER_URL=amqp://guest:guest@rabbitmq:5672//
 
 ENV TZ=America/Sao_Paulo
 RUN rm -vf /etc/localtime \
@@ -14,9 +26,4 @@ RUN rm -vf /etc/localtime \
 # Default port
 EXPOSE    5555
 
-# Variables with default that can be overruled by environment vars during docker run.
-ENV       REDIS_HOST redis
-ENV       REDIS_PORT 6379
-ENV       REDIS_DATABASE 0
-
-CMD       flower --auto_refresh=True --persistent=True --port=5555 --broker=redis://$REDIS_HOST:$REDIS_PORT/$REDIS_DATABASE
+CMD flower --broker=$BROKER_URL
