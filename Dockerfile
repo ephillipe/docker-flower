@@ -3,7 +3,7 @@ FROM      python:2.7
 # WARNING: BE SURE NOT TO USE THE WORD 'FLOWER' IN THE ENV VARS
 # E.G. VIA LINKING OR MAESTRO-NG: THEY HAVE A SPECIAL MEANING IN FLOWER.
 
-RUN pip install redis==2.10.5 \
+RUN pip install redis \
     && pip install https://github.com/mher/flower/zipball/master  
 
 ENV FLOWER_PERSISTENT=False
