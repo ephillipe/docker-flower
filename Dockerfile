@@ -6,16 +6,6 @@ FROM      python:2.7
 RUN pip install redis \
     && pip install https://github.com/mher/flower/zipball/master  
 
-ENV FLOWER_PERSISTENT=False
-ENV FLOWER_DEBUG=False
-ENV FLOWER_MAX_WORKERS=100
-ENV FLOWER_AUTO_REFRESH=True
-ENV FLOWER_INSPECT_TIMEOUT=1000
-ENV FLOWER_INSPECT=True
-ENV FLOWER_NATURAL_TIME=True
-ENV FLOWER_PORT=5555
-ENV BROKER_URL=amqp://guest:guest@rabbitmq:5672//
-
 ENV TZ=America/Sao_Paulo
 RUN rm -vf /etc/localtime \
     && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime  \
